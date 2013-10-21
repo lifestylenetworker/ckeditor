@@ -1,7 +1,7 @@
 class Ckeditor::PicturesController < Ckeditor::ApplicationController
 
   def index
-    @pictures = Ckeditor.picture_model.find_all(ckeditor_pictures_scope)
+    @pictures = Ckeditor.picture_model.find_all(:conditions => { assetable_id: current_user.id, assetable_type: "User" })
     respond_with(@pictures) 
   end
   
